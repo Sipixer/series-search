@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  elasticsearch:
+    restart: unless-stopped
+    image: elasticsearch:8.12.2
+    environment:
+      - ELASTIC_PASSWORD=root_root
+    ports:
+      - "9200:9200"
+      - "9300:9300"
