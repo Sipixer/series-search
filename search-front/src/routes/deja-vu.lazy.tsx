@@ -2,6 +2,7 @@ import { SerieCard } from "@/components/SerieItem";
 import { useUserStore } from "@/store/userStore";
 import { createLazyFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
+import { VITE_API_URL } from "@/CONSTANT";
 
 export const Route = createLazyFileRoute("/deja-vu")({
   component: DejaVu,
@@ -12,7 +13,7 @@ function DejaVu() {
   const query = useQuery({
     queryKey: [`watched`],
     queryFn: async () => {
-      return fetch("http://localhost:3000/api/watched", {
+      return fetch(VITE_API_URL + "/api/watched", {
         headers: {
           User: uuid,
         },

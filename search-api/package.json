@@ -1,15 +1,17 @@
 {
   "scripts": {
-    "dev": "tsx watch src/index.ts"
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc"
   },
   "dependencies": {
+    "@elastic/elasticsearch": "^8.12.2",
     "@hono/node-server": "^1.8.2",
     "hono": "^4.0.8",
-    "@elastic/elasticsearch": "^8.12.2",
     "natural": "^6.10.5"
   },
   "devDependencies": {
     "@types/node": "^20.11.17",
-    "tsx": "^3.12.2"
+    "tsx": "^3.12.2",
+    "typescript": "^5.3.3"
   }
 }

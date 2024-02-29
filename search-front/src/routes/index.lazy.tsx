@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { createLazyFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useUserStore } from "@/store/userStore";
+import { VITE_API_URL } from "@/CONSTANT";
 
 export const Route = createLazyFileRoute("/")({
   component: Index,
@@ -21,7 +22,7 @@ function Index() {
 
   useEffect(() => {
     if (search.length === 0) return setSeries([]);
-    fetch("http://localhost:3000/api/search/" + search, {
+    fetch(VITE_API_URL + "/api/search/" + search, {
       headers: {
         User: uuid,
       },

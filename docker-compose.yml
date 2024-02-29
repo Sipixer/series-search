@@ -2,10 +2,27 @@ version: '3.8'
 
 services:
   elasticsearch:
-    restart: unless-stopped
     image: elasticsearch:8.12.2
     environment:
       - ELASTIC_PASSWORD=root_root
     ports:
       - "9200:9200"
       - "9300:9300"
+  search-api:
+    image: sipixer/series-search-api
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - ELASTICSEARCH_URL=https://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+  search-front:
+    image: sipixer/series-search-front
+    restart: unless-stopped
+    ports:
+      - "3001:80"
+    environment:
+      - VITE_API_URL=http://search-api:3000
+    depends_on:
+      - search-api

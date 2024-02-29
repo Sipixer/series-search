@@ -3,6 +3,7 @@ import { Button } from "./ui/button";
 import { CrossCircledIcon, CheckCircledIcon } from "@radix-ui/react-icons";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useUserStore } from "@/store/userStore";
+import { VITE_API_URL } from "../CONSTANT";
 
 export const SerieCard = ({
   serie,
@@ -20,7 +21,7 @@ export const SerieCard = ({
       queryClient.invalidateQueries({ queryKey: ["watched", "search"] });
     },
     mutationFn: async (title: string) => {
-      return fetch("http://localhost:3000/api/markAsWatched", {
+      return fetch(VITE_API_URL + "/api/markAsWatched", {
         method: "POST",
         body: JSON.stringify({
           serie: title,
@@ -38,7 +39,7 @@ export const SerieCard = ({
       });
     },
     mutationFn: async (title: string) => {
-      return fetch("http://localhost:3000/api/markAsUnwatched", {
+      return fetch(VITE_API_URL + "/api/markAsUnwatched", {
         method: "POST",
         body: JSON.stringify({
           serie: title,

@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Progress } from "./ui/progress";
 import { ReloadIcon } from "@radix-ui/react-icons";
+import { VITE_API_URL } from "@/CONSTANT";
 
 export function ServerDataLoaded() {
   const [status, setStatus] = useState<{
@@ -22,7 +23,7 @@ export function ServerDataLoaded() {
   });
 
   useEffect(() => {
-    const eventSource = new EventSource("http://localhost:3000/status");
+    const eventSource = new EventSource(VITE_API_URL + "/status");
 
     eventSource.onmessage = (event) => {
       const json = JSON.parse(event.data);
@@ -35,7 +36,7 @@ export function ServerDataLoaded() {
   }, []);
 
   const onImport = () => {
-    fetch("http://localhost:3000/import", {
+    fetch(VITE_API_URL + "/import", {
       method: "POST",
     }).then((res) => res.json());
   };
