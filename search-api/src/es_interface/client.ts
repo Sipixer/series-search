@@ -7,8 +7,5 @@ export const esClient = new Client({
     auth: {
         username: "elastic",
         password: "root_root"
-    },
-    tls: {
-        rejectUnauthorized: false
     }
 });
